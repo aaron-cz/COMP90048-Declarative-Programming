@@ -1,3 +1,8 @@
+-- Question 1
+data Card = Card Suit Rank
+data Suit = Hs | Ds | Ss | Cs
+type Rank = Int
+
 -- Question 2
 {-
 Define a Haskell type for representing "font" tags in HTML. A font tag
@@ -7,7 +12,7 @@ using a colour name (e.g., "red"), a six−digit hexidecimal number
 (e.g. #02EA1F) or a RGB triple of numbers (e.g. rgb(255,100,0)).
 -}
 type Font_tag = [Font_specifier]
-data Font_specifier 
+data Font_specifier
     =  Size Int
     | Face String
     | Colour Colour
