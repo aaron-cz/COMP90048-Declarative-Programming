@@ -14,12 +14,17 @@ listof(Elt, [Elt|List]) :-
 QUESTION 2
 
 Implement the predicate all_same(List) such that every element of
-List is identical.  This should hold for empty and single element
+List is identical. This should hold for empty and single element
 lists, as well.
 */
 
 all_same(List) :-
     listof(_, List).
+
+all_same2([]).
+all_same2([_]).
+all_same2([E,E|Tail]) :-
+    all_same2([E|Tail]).
 
 /*
 QUESTION 3
@@ -119,8 +124,10 @@ intset_member(N, tree(_, N0, R)) :-
 
 
 intset_insert(N, empty, tree(empty,N,empty)).
-intset_insert(N, tree(empty, N0 , empty), tree(tree(empty, N, empty), N0, empty)):-
-    N < N0.
-intset_insert(N, tree(empty, N0 , empty), tree(empty, N0, tree(empty, N, empty))):-
-    N > N0.
 intset_insert(N, tree(L,N,R), tree(L,N,R)).
+intset_insert(N, tree(L0, N0, R0), tree(L, N0, R0)):-
+    N < N0,
+    intset_insert(N, L0, L).
+intset_insert(N, tree(L0, N0 , R0), tree(L0, N0, R)):-
+    N > N0,
+    intset_insert(N, R0, R).

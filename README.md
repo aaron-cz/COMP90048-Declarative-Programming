@@ -1,3 +1,5 @@
-Here are some Haskell practice in the subject Declarative programing
+# COMP90048 Declarative Programming
 
-Including the sample scripts of workshops, lecture quizes or assignments.
+Here are some Haskell practices from the subject Declarative Programing
+
+Including some sample scripts in workshops, lecture quizes and assignments.
