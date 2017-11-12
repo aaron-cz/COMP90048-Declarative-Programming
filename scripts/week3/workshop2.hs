@@ -1,4 +1,12 @@
 -- Question 1
+{-Give a high level description (not programming language specific)
+of at least five different possible representations of playing cards
+from a standard 52 card deck. Describe the advantages and disadvantages
+of each representation.
+
+The suits are clubs, diamonds, hearts and spades, and the 13 ranks in
+each suit are the 2, 3, 4, 5, 6, 7, 8, 9, 10, jack, queen, king and ace.
+In this question, we ignore jokers.-}
 data Card = Card Suit Rank
 data Suit = Hs | Ds | Ss | Cs
 type Rank = Int

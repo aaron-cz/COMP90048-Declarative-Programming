@@ -9,10 +9,15 @@ structural induction where possible.
 data Tree a = Empty | Node (Tree a) a (Tree a)
 
 
-treeSort :: Ord a => [a] -> [a]
+tree_sort :: Ord a => [a] -> [a]
 
-treeSort xs = tree_inorder (list_to_bst xs)
+tree_sort xs = tree_inorder (list_to_bst xs)
 
+
+tree_inorder :: Ord a => Tree a -> [a]
+
+tree_inorder Empty = []
+tree_inorder (Node l v r) = (tree_inorder l) ++ [v] ++ (tree_inorder r)
 
 
 list_to_bst :: Ord a => [a] -> Tree a
@@ -28,13 +33,6 @@ bst_insert i Empty = Node Empty i Empty
 bst_insert i (Node l v r)
     | i <= v = (Node (bst_insert i l) v r)
     | i > v = (Node l v (bst_insert i r))
-
-
-tree_inorder :: Ord a => Tree a -> [a]
-
-tree_inorder Empty = []
-tree_inorder (Node l v r) = (tree_inorder l) ++ [v] ++ (tree_inorder r)
-
 
 {-
 QUESTION 2
@@ -78,15 +76,21 @@ of the list and (2) a single traversal of the list.
 -}
 
 stats1 :: [Int] -> (Int, Int, Int)
+
 stats1 ns = (length ns, sum ns, sumsq ns)
 
-
 sumsq :: [Int] -> Int
+
 sumsq [] = 0
 sumsq (n:ns) = n*n + sumsq ns
 
+
+
 stats2 :: [Int] -> (Int, Int, Int)
+
 stats2 [] = (0,0,0)
 stats2 (n:ns) =
-   let (l,s,sq) = stats2 ns
-   in (l+1, s+n, sq+n*n)
+  let (l,s,sq) = stats2 ns
+  in (l+1, s+n, sq+n*n)
+
+

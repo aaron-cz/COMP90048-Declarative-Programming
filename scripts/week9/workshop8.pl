@@ -10,6 +10,8 @@ sumlist([N|Ns], Sum) :-
 
 Rewrite it to be tail recursive.
 */
+
+
 sumlist(Ls, Sum) :-
     sumlist1(Ls, 0, Sum).
 
@@ -17,6 +19,7 @@ sumlist1([], Sum, Sum).
 sumlist1([N|Ns], Sum0, Sum) :-
     Sum1 is N + Sum0,
     sumlist1(Ns, Sum1, Sum).
+
 
 /*
 QUESTION 2
@@ -33,10 +36,12 @@ list of all the elements of Tree, in left-to-right order.  This code
 need only work in the mode where the tree is input.
 */
 
+
 tree(empty).
-tree(node(Left,_,Right)) :-
+tree(node(Left, _, Right)) :-
     tree(Left),
     tree(Right).
+
 
 tree_list(empty, []).
 tree_list(node(Left, E, Right), List) :-
@@ -44,25 +49,28 @@ tree_list(node(Left, E, Right), List) :-
     tree_list(Right, List2),
     append(List1, [E|List2], List).
 
+
 /*
 QUESTION 3
 
 Revise the definition from the previous question not to use append/3
-to construct the list.  That is, ensure the cost of the operation is
+to construct the list. That is, ensure the cost of the operation is
 proportional to the number of elements in the tree.
 
 Hint:  look at the approach taken to write a tail recursive reverse
 predicate for inspiration.
 */
 
-tree_list(Tree, List) :-
-    tree_list1(Tree, [], List).
 
-tree_list1(empty, List, List).
-tree_list1(node(Left, E, Right), List0, List) :-
-    tree_list1(Left, List1, List),
-    List1 is [E|List2],
-    tree_list1(Right, List0, List2).
+tree_list(Tree, List) :-
+    tree_list(Tree, List, []).
+
+tree_list(empty, List, List).
+tree_list(node(Left,Elt,Right), List, List0) :-
+    tree_list(Left, List, List1),
+    List1 = [Elt|List2],
+    tree_list(Right, List2, List0).
+
 
 /*
 QUESTION 4
@@ -86,7 +94,3 @@ list_tree(List, node(Left, Elt, Right)) :-
     append(Front, [Elt|Back], List),
     list_tree(Front, Left),
     list_tree(Back, Right).
-    
-
-
-

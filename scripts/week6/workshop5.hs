@@ -28,7 +28,7 @@ Define the function
     zWith :: (a -> b -> c) -> [a] -> [b] -> [c]
 
 that constructs a list of the result of applying the first argument to
-corresponding elements of the two input lists.  If the two list
+corresponding elements of the two input lists. If the two list
 arguments are different lengths, the extra elements of the longer one
 are ignored.  For example,
 
@@ -87,7 +87,9 @@ Include a type declaration for your function.
 
 sqrtPM :: (Floating a, Ord a) => a -> [a]
 sqrtPM x
-  | x  > 0    = let y = sqrt x in [y, -y] 
+  | x  > 0 = 
+    let y = sqrt x
+    in [y, -y] 
   | x == 0    = [0]
   | otherwise = []
 
@@ -127,4 +129,3 @@ sqrt_pos2 [] = []
 sqrt_pos2 (x:xs) = 
   | x < 0 = sqrt_pos2 xs
   | otherwise = sqrt x : sqrt_pos2 xs
-

@@ -95,7 +95,7 @@ same_shape Leaf Leaf = True
 same_shape Leaf (Node _ _ _ _) = False
 same_shape (Node _ _ _ _) Leaf = False
 same_shape (Node _ _ l1 r1) (Node _ _ l2 r2) =
-    same_shape l1 l2 && same_shape r1 r2
+    same_shape l1 l2 && same_shape r1 r2 
 
 
 {-
